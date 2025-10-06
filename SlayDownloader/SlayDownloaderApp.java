@@ -4,7 +4,7 @@ import java.awt.*;
 public class SlayDownloaderApp extends JFrame {
 
     public SlayDownloaderApp() {
-        setTitle("File Manager");
+        setTitle("SlayDownloader");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 750);
         setLocationRelativeTo(null);
@@ -34,7 +34,7 @@ public class SlayDownloaderApp extends JFrame {
         welcomeText.setFont(new Font("Arial", Font.PLAIN, 16));
         welcomeText.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel appTitle = new JLabel("File Manager");
+        JLabel appTitle = new JLabel("SlayDownloader");
         appTitle.setForeground(text);
         appTitle.setFont(new Font("Arial", Font.BOLD, 32));
         appTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
