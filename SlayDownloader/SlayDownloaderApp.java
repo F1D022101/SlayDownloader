@@ -13,8 +13,8 @@ public class SlayDownloaderApp extends JFrame {
         Color background = new Color(249, 250, 251);
         Color text = new Color(17, 24, 39);
         Color textSecondary = new Color(107, 114, 128);
-        Color primary = new Color(59, 130, 246);
-        Color secondary = new Color(16, 185, 129);
+        // Color primary = new Color(59, 130, 246);
+        // Color secondary = new Color(16, 185, 129);
         Color accent = new Color(245, 158, 11);
         Color card = Color.WHITE;
 
@@ -72,12 +72,12 @@ public class SlayDownloaderApp extends JFrame {
         cardsContainer.add(createDashboardCard(
                 "Download File",
                 "Download files from URL with various formats",
-                primary, text, textSecondary));
+                "asset/down1.jpg", text, textSecondary));
         cardsContainer.add(Box.createRigidArea(new Dimension(10, 10))); // jarak antar card
         cardsContainer.add(createDashboardCard(
                 "Compress to ZIP",
                 "Upload and compress files into ZIP archive",
-                secondary, text, textSecondary));
+                "asset/down2.jpg", text, textSecondary));
 
         // Tambahkan container ini ke section
         sectionPanel.add(cardsContainer);
@@ -124,7 +124,7 @@ public class SlayDownloaderApp extends JFrame {
         setVisible(true);
     }
 
-    private JPanel createDashboardCard(String title, String description, Color color, Color text, Color textSecondary) {
+    private JPanel createDashboardCard(String title, String description, String pathGambar, Color text, Color textSecondary) {
         JPanel card = new JPanel();
         card.setLayout(new BorderLayout());
         card.setBackground(Color.WHITE);
@@ -136,9 +136,26 @@ public class SlayDownloaderApp extends JFrame {
         card.setAlignmentX(Component.CENTER_ALIGNMENT); 
         // Icon panel
         JPanel iconPanel = new JPanel();
-        iconPanel.setBackground(color);
+        iconPanel.setBackground(Color.WHITE); // biar tidak tumpang warna
         iconPanel.setPreferredSize(new Dimension(56, 56));
         iconPanel.setMaximumSize(new Dimension(56, 56));
+        iconPanel.setLayout(new BorderLayout());
+
+        // Gambar icon
+        ImageIcon downIcon = null;
+        try {
+                downIcon = new ImageIcon(getClass().getResource(pathGambar));
+        } catch (Exception e) {
+                System.out.println("⚠️ Gambar tidak ditemukan di classpath.");
+        }
+        // Resize gambar biar pas 32x32
+        Image scaled = downIcon.getImage().getScaledInstance(56, 56, Image.SCALE_SMOOTH);
+        JLabel iconLabel = new JLabel(new ImageIcon(scaled));
+        iconLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        iconLabel.setVerticalAlignment(SwingConstants.CENTER);
+
+        iconPanel.add(iconLabel, BorderLayout.CENTER);
+
         // iconPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // padding 10px
 
 
@@ -160,7 +177,7 @@ public class SlayDownloaderApp extends JFrame {
         textPanel.add(descLabel);
 
         JButton chevron = new JButton(">");
-        chevron.setBackground(color);
+        chevron.setBackground(new Color(242,157,188,100));
         chevron.setForeground(Color.WHITE);
         chevron.setFocusPainted(false);
 
