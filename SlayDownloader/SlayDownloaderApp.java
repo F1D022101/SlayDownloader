@@ -6,7 +6,7 @@ public class SlayDownloaderApp extends JFrame {
     public SlayDownloaderApp() {
         setTitle("File Manager");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1920, 1080);
+        setSize(500, 750);
         setLocationRelativeTo(null);
 
         // Warna tema
@@ -21,7 +21,12 @@ public class SlayDownloaderApp extends JFrame {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         mainPanel.setBackground(background);
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        int frameWidth = 400;
+        mainPanel.setMaximumSize(new Dimension(frameWidth, Integer.MAX_VALUE));
+        mainPanel.setPreferredSize(new Dimension(frameWidth, 700));
+        mainPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Header
         JLabel welcomeText = new JLabel("Welcome to");
@@ -68,7 +73,7 @@ public class SlayDownloaderApp extends JFrame {
                 "Download File",
                 "Download files from URL with various formats",
                 primary, text, textSecondary));
-        cardsContainer.add(Box.createRigidArea(new Dimension(0, 10))); // jarak antar card
+        cardsContainer.add(Box.createRigidArea(new Dimension(10, 10))); // jarak antar card
         cardsContainer.add(createDashboardCard(
                 "Compress to ZIP",
                 "Upload and compress files into ZIP archive",
@@ -94,12 +99,15 @@ public class SlayDownloaderApp extends JFrame {
         JLabel infoTitle = new JLabel("How to use");
         infoTitle.setFont(new Font("Arial", Font.BOLD, 16));
         infoTitle.setForeground(text);
+        infoTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel infoText = new JLabel("<html>• Use Download to save files from URLs<br>" +
                 "• Use Compress to create ZIP archives from multiple files<br>" +
                 "• All downloads are saved to your device storage</html>");
-        infoText.setFont(new Font("Arial", Font.PLAIN, 14));
+        infoText.setFont(new Font("Arial", Font.PLAIN, 15));
         infoText.setForeground(textSecondary);
+        infoText.setAlignmentX(Component.CENTER_ALIGNMENT);
+        infoText.setBorder(BorderFactory.createEmptyBorder(7, 0, 0, 0));
 
         infoCard.add(infoTitle);
         infoCard.add(infoText);
@@ -109,6 +117,8 @@ public class SlayDownloaderApp extends JFrame {
         // Scroll pane
         JScrollPane scrollPane = new JScrollPane(mainPanel);
         scrollPane.setBorder(null);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         add(scrollPane);
 
         setVisible(true);
@@ -120,17 +130,18 @@ public class SlayDownloaderApp extends JFrame {
         card.setBackground(Color.WHITE);
         card.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(230, 230, 230)),
-                BorderFactory.createEmptyBorder(12, 12, 12, 12)
+                BorderFactory.createEmptyBorder(12, 16, 12, 16)
         ));
-        card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 100));
-
+        card.setMaximumSize(new Dimension(Integer.MAX_VALUE, 80));
+        card.setAlignmentX(Component.CENTER_ALIGNMENT); 
         // Icon panel
         JPanel iconPanel = new JPanel();
         iconPanel.setBackground(color);
         iconPanel.setPreferredSize(new Dimension(56, 56));
         iconPanel.setMaximumSize(new Dimension(56, 56));
+        // iconPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // padding 10px
 
-        // Texts
+
         JPanel textPanel = new JPanel();
         textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
         textPanel.setBackground(Color.WHITE);
@@ -138,10 +149,12 @@ public class SlayDownloaderApp extends JFrame {
         JLabel titleLabel = new JLabel(title);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 16));
         titleLabel.setForeground(text);
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 10, 5, 0));
 
         JLabel descLabel = new JLabel("<html>" + description + "</html>");
         descLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         descLabel.setForeground(textSecondary);
+        descLabel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
 
         textPanel.add(titleLabel);
         textPanel.add(descLabel);
